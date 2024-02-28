@@ -1,0 +1,25 @@
+def user_info(pass_info):
+    enter_info = input("User Information: ")
+    pass_info.append(enter_info)
+    return pass_info
+
+
+def user_update():
+    user_want_update = input("Do you want to update your information (Y/N): ").lower()
+    return 'y' if user_want_update == "y" else 'n' if user_want_update == "n" else user_want_update
+
+
+user_data_store = []
+while True:
+
+    user_input_info = user_info(user_data_store)
+    while True:
+        user_choose_update = user_update()
+
+        if user_choose_update == "y":
+            break
+        elif user_choose_update == "n":
+            print("This is your information", user_data_store)
+            exit(0)
+        else:
+            print("Invalid Keyword! Try Again.")
