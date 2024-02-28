@@ -1,0 +1,48 @@
+def user_info_count():
+    count_add = input("How many information do you want to input: ")
+    if not count_add.isdigit():
+        print("Invalid input. Try again!")
+        return user_info_count()
+    elif count_add.isdigit() and int(count_add) == 0:
+        print("Input must greater than 0.")
+        return user_info_count()
+    else:
+        return int(count_add)
+
+
+def user_info(pass_info):
+    enter_info = input("User Information: ")
+    pass_info.append(enter_info)
+    return pass_info
+
+
+def user_update():
+    user_want_update = input("Do you want to update your information (Y/N): ").lower()
+    return 'y' if user_want_update == "y" else 'n' if user_want_update == "n" else user_want_update
+
+
+def main_function():
+    user_want_input = user_info_count()
+    info_default_val = 1
+    while info_default_val <= user_want_input:
+
+        user_input_info = user_info(user_data_store)
+        if info_default_val == user_want_input:
+            print(user_input_info)
+
+            while True:
+                user_choose_update = user_update()
+
+                if user_choose_update == "y":
+                    main_function()
+                elif user_choose_update == "n":
+                    print("This is your information", user_input_info)
+                    exit(0)
+                else:
+                    print("Invalid Keyword! Try Again.")
+
+        info_default_val = info_default_val + 1
+
+
+user_data_store = []
+main_function()
