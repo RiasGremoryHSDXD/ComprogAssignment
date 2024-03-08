@@ -1,0 +1,92 @@
+def user_choice():
+    print("+------------------------------+")
+    print("|        USER CHOICE MENU      |")
+    print("+--------------------+---------+")
+    print("| Update Information |    1    |")
+    print("| Change Information |    2    |")
+    print("| Remove Information |    3    |")
+    print("| Insert Information |    4    |")
+    print("| Exit               |    5    |")
+    print("+--------------------+---------+")
+
+
+def info_update():
+    count_add = input("How many information will update: ")
+
+    if not count_add.isdigit():
+        print("Invalid input number")
+        return info_update()
+    else:
+        count_add = int(count_add)
+        count_loop = 0
+        while count_loop < count_add:
+            data_store.append(input("Enter information: "))
+            count_loop += 1
+
+        return data_store
+
+
+def info_change():
+    if len(data_store) == 0:
+        print("List is empty.")
+    else:
+        change_info = input("Enter item to edit: ")
+        if change_info in data_store:
+            item_index = data_store.index(change_info)
+            data_store[item_index] = input("Enter new information: ")
+            return data_store
+        else:
+            print("The item is not in list.")
+            return info_change()
+    
+
+def info_remove():
+    if len(data_store) == 0:
+        print("List is empty.")
+    else:
+        remove_info = input("Enter item to remove: ")
+        if remove_info in data_store:
+            data_store.remove(remove_info)
+            return data_store
+        else:
+            print("The item is not in list.")
+            return info_remove()
+    
+
+def info_insert():
+    index_insert = input("Enter place to insert item: ")
+
+    if not index_insert.isdigit() or int(index_insert) > len(data_store):
+        print("Invalid input number")
+        return info_insert()
+    else:
+        index_insert = int(index_insert) - 1
+        data_store.insert(index_insert, input("Enter add information: "))
+        return data_store
+        
+    
+data_store = []
+loop_control = True
+while loop_control:
+    print(data_store)
+    user_choice()
+    user_chosen = input("Choose: ")
+    if user_chosen == '1':
+        print(data_store)
+        info_update()
+    elif user_chosen == '2':
+        print(data_store)
+        info_change()
+    elif user_chosen == '3':
+        print(data_store)
+        info_remove()
+    elif user_chosen == '4':
+        print(data_store)
+        info_insert()
+    elif user_chosen == '5':
+        print("Exiting...")
+        loop_control = False
+    else:
+        print("Invalid choice")
+
+print("Final Information: ", data_store)
